@@ -1,14 +1,14 @@
 //
 const Gameboard = (() => {
   const gameBoard = document.getElementById("game-board");
-  let board = [
+  const board = [
     ["", "", ""],
     ["", "", ""],
     ["", "", ""],
   ];
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      squaresId = "square-" + i + "-" + j;
+      squaresId = `square-${i}-${j}`
       const div = document.createElement("div");
       div.id = squaresId;
       div.style.border = "1px solid black";
@@ -17,3 +17,14 @@ const Gameboard = (() => {
     }
   }
 })();
+
+// factory function for player Name
+function Player(name, symbol) {
+  return {
+    name,
+    symbol,
+  };
+}
+
+const player1 = Player("Player 1", "X");
+const player2 = Player("Player 2", "O");
