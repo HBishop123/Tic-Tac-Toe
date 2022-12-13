@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-size: 60px
 }
 
 body {
@@ -20,7 +21,11 @@ body {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
-
+.boardSquare{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 @media (max-width: 500px) {
   #game-board {
     width: 300px;
