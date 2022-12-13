@@ -11,8 +11,8 @@ const Gameboard = (() => {
       squaresId = "square-" + i + "-" + j;
       const div = document.createElement("div");
       div.id = squaresId;
-      div.style.border = "1px solid black"
-      gameBoard.appendChild(div)
+      div.style.border = "1px solid black";
+      gameBoard.appendChild(div);
       console.log(div.id);
     }
   }
