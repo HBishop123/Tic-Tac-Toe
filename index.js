@@ -50,9 +50,11 @@ const Gameflow = (() => {
     function clickEvent() {
       square.innerText = currentTurn;
       square.classList.add(currentTurn);
-      console.log(square)
+      console.log(square);
       changeTurn();
-      checkForWinner();
+      if (checkForWinner(currentTurn)){
+        console.log("winner");
+      }
     }
   });
 
@@ -63,5 +65,11 @@ const Gameflow = (() => {
       currentTurn = player1.symbol;
     }
   }
-  function checkForWinner() {}
+  function checkForWinner(currentTurn) {
+return winningCombos.some(combination => {
+  return combination.every(index => {
+    return eachSquare[index].classList.contains(currentTurn)
+  })
+})
+  }
 })();
