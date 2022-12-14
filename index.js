@@ -29,6 +29,16 @@ function Player(name, symbol) {
 const Gameflow = (() => {
   const player1 = Player("Player 1", "X");
   const player2 = Player("Player 2", "O");
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
 
   let currentTurn = player1.symbol;
   currentTurn = player1 ? player1.symbol : player2.symbol;
@@ -40,7 +50,9 @@ const Gameflow = (() => {
 
     function clickEvent() {
       square.innerText = currentTurn;
-      changeTurn()
+      square.classList.add(currentTurn);
+      changeTurn();
+      checkForWinner();
     }
   });
 
@@ -51,4 +63,5 @@ const Gameflow = (() => {
       currentTurn = player1.symbol;
     }
   }
+  function checkForWinner() {}
 })();
