@@ -8,10 +8,9 @@ const CreateGameBoard = (() => {
   ];
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      squaresId = `square-${i}-${j}`;
       const div = document.createElement("div");
-      div.id = squaresId;
-      div.className = "boardSquare";
+      div.id = "squaresId";
+
       div.style.border = "1px solid black";
       div.innerText = board[i][j];
       gameBoard.appendChild(div);
@@ -43,7 +42,7 @@ const Gameflow = (() => {
   let currentTurn = player1.symbol;
   currentTurn = player1 ? player1.symbol : player2.symbol;
 
-  const eachSquare = document.querySelectorAll(".boardSquare");
+  const eachSquare = document.querySelectorAll("#squaresId");
 
   eachSquare.forEach((square) => {
     square.addEventListener("click", clickEvent, { once: true });
@@ -51,6 +50,7 @@ const Gameflow = (() => {
     function clickEvent() {
       square.innerText = currentTurn;
       square.classList.add(currentTurn);
+      console.log(square)
       changeTurn();
       checkForWinner();
     }
