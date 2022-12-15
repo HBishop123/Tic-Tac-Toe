@@ -47,12 +47,12 @@ const Gameflow = (() => {
   eachSquare.forEach((square) => {
     square.addEventListener("click", clickEvent, { once: true });
 
-    function clickEvent() {
+    function clickEvent(e) {
+      const square = e.target
       square.innerText = currentTurn;
       square.classList.add(currentTurn);
-      console.log(square);
       changeTurn();
-      if (checkForWinner(currentTurn)){
+      if (checkForWinner(currentTurn)) {
         console.log("winner");
       }
     }
@@ -66,10 +66,10 @@ const Gameflow = (() => {
     }
   }
   function checkForWinner(currentTurn) {
-return winningCombos.some(combination => {
-  return combination.every(index => {
-    return eachSquare[index].classList.contains(currentTurn)
-  })
-})
+    return winningCombos.some((combination) => {
+      return combination.every((index) => {
+        return eachSquare[index].classList.contains(currentTurn);
+      });
+    });
   }
 })();
