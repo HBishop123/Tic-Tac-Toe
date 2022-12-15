@@ -10,7 +10,6 @@ const CreateGameBoard = (() => {
     for (let j = 0; j < board[i].length; j++) {
       const div = document.createElement("div");
       div.id = "squaresId";
-
       div.style.border = "1px solid black";
       div.innerText = board[i][j];
       gameBoard.appendChild(div);
@@ -28,6 +27,7 @@ function Player(name, symbol) {
 const Gameflow = (() => {
   const player1 = Player("Player 1", "X");
   const player2 = Player("Player 2", "O");
+
   const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -40,17 +40,17 @@ const Gameflow = (() => {
   ];
 
   let currentTurn = player1.symbol;
-  currentTurn = player1 ? player1.symbol : player2.symbol;
+  currentTurn = player1.symbol ? player1.symbol : player2.symbol;
 
   const eachSquare = document.querySelectorAll("#squaresId");
-
   eachSquare.forEach((square) => {
-    square.addEventListener("click", clickEvent, { once: true });
+    square.addEventListener("click", clickEvent, { once: true }); // once: true - only allows a click event once
 
     function clickEvent(e) {
-      const square = e.target
+      const square = e.target;
       square.innerText = currentTurn;
       square.classList.add(currentTurn);
+      console.log(square);
       changeTurn();
       if (checkForWinner(currentTurn)) {
         console.log("winner");
@@ -65,9 +65,10 @@ const Gameflow = (() => {
       currentTurn = player1.symbol;
     }
   }
+
   function checkForWinner(currentTurn) {
-    return winningCombos.some((combination) => {
-      return combination.every((index) => {
+    return winningCombos.some((combos) => {
+      return combos.every((index) => {
         return eachSquare[index].classList.contains(currentTurn);
       });
     });
